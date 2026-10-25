@@ -41,6 +41,8 @@ api.interceptors.response.use(
       if (window.location.pathname !== '/login' && window.location.pathname !== '/register') {
         window.location.href = '/login';
       }
+    } else if (error.response && error.response.status === 403) {
+      console.warn('DocMind API 403 (Forbidden): Access denied or CORS origin not permitted', error.response.data);
     }
     return Promise.reject(error);
   }
